@@ -1,18 +1,27 @@
-import React, { Component } from 'react'
+import React, { Fragment } from 'react'
 import UserItem from './UserItem'
+import Spinner from '../layout/Spinner'
+import PropTypes from 'prop-types'
 
-export class Users extends Component {
-  render() {
-    const { users } = this.props
+function Users({ users, loading }) {
+  return (
+    <Fragment>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div style={userStyle}>
+          {users.map(user => {
+            return <UserItem key={user.id} user={user} />
+          })}
+        </div>
+      )}
+    </Fragment>
+  )
+}
 
-    return (
-      <div style={userStyle}>
-        {users.map(user => {
-          return <UserItem key={user.id} user={user} />
-        })}
-      </div>
-    )
-  }
+Users.propTypes = {
+  users: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 }
 
 const userStyle = {
