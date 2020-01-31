@@ -36,7 +36,10 @@ export default function Search(props) {
         />
       </form>
       {showClear && (
-        <button className='btn btn-light btn-block' onClick={clearUsers}>
+        <button
+          className='btn btn-light btn-block'
+          style={{ marginBottom: '14px' }}
+          onClick={clearUsers}>
           Clear
         </button>
       )}
