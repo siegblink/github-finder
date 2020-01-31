@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 
 class User extends Component {
   componentDidMount() {
+    console.log(this.props)
     this.props.getUser(this.props.match.params.login)
     this.props.getUserRepos(this.props.match.params.login)
   }
