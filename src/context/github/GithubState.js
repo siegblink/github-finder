@@ -16,6 +16,14 @@ export default function GithubState(props) {
   const [state, dispatch] = useReducer(GithubReducer, initialState)
 
   // Search users
+  async function searchUsers(text) {
+    setLoading()
+    const response = await axios.get(
+      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    )
+    // setUsers(response.data.items)
+    setLoading()
+  }
 
   // Get user
 
@@ -24,6 +32,9 @@ export default function GithubState(props) {
   // Clear users
 
   // Set loading
+  function setLoading() {
+    dispatch({ type: SET_LOADING })
+  }
 
   return (
     <GithubContext.Provider
